@@ -40,6 +40,7 @@ public class TCPConnection {
     }
     public synchronized void sendString(String value) {
         try {
+            out.write(value + "\r\n");
             out.flush();
         } catch (IOException e) {
             evenListener.onException(TCPConnection.this, e);
