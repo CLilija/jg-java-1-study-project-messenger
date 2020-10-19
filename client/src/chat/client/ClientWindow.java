@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class ClientWindow extends JFrame implements ActionListener, TCPConnectionListener {
 
-    private static final String IP_ADDR = "192.168.0.102";
-    private static final int PORT = 8189;
+    private static final String IP_ADDR = "192.168.43.198";//ip address - ?
+    private static final int PORT = 2466;                  // port - ?
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
 
@@ -51,32 +51,45 @@ public class ClientWindow extends JFrame implements ActionListener, TCPConnectio
         try {
             connection = new TCPConnection(this, IP_ADDR, PORT);
         } catch (IOException e) {
-            e.printStackTrace();
+           printMsg("Connection exception: " + e);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        String msg = fieldInput.getText();
+        if(msg.equals("")) return;
+        fieldInput.setText(null);
+        connection.sendString(fieldNickname.getText() + ": " + msg);
     }
 
     @Override
     public void onConnectionReady(TCPConnection tcpConnection) {
-
+        printMsg("Connection ready...");
     }
 
     @Override
     public void onReceiveString(TCPConnection tcpConnection, String value) {
-
+        printMsg(value);
     }
 
     @Override
     public void onDisconnect(TCPConnection tcpConnection) {
-
+        printMsg("Connection close");
     }
 
     @Override
     public void onException(TCPConnection tcpConnection, Exception e) {
+        printMsg("Connection exception: " + e);
+    }
 
+    private synchronized void printMsg(String msg) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                log.append(msg + "\n");
+                log.setCaretPosition(log.getDocument().getLength());
+            }
+        });
     }
 }
