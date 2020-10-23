@@ -18,8 +18,8 @@ import javax.swing.JTextArea;
 public class ClientWindow extends JFrame implements ActionListener, TCPConnectionListener {
 
 
-    //private static final String IP_ADDR = "192.168.0.100";//ip address - 83.99.253.112?
-    //private static final int PORT = 8189;                  // port - ?
+    private static final String IP_ADDR = "192.168.0.100";//ip address - 83.99.253.112?
+    private static final int PORT = 8189;                  // port - ?
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
     ConnectionData connectionData=new ConnectionData();
@@ -34,14 +34,14 @@ public class ClientWindow extends JFrame implements ActionListener, TCPConnectio
 
     private final JTextArea log = new JTextArea();
     JScrollPane scrollPlane = new JScrollPane(log);// добавил для того что бы сделать скролл
-    private final JTextField fieldNickname = new JTextField(connectionData.getName());
+    private final JTextField fieldNickname = new JTextField("Saturn");
     private final JTextField fieldInput = new JTextField();
 
     private TCPConnection connection;
 
     private ClientWindow() {
 
-        ConnectionData connectionData=new ConnectionData();
+        /*ConnectionData connectionData=new ConnectionData();
         Scanner scanner = new Scanner(System.in);
         System.out.println("IP");
         connectionData.setIP_ADDR(scanner.next());
@@ -50,7 +50,7 @@ public class ClientWindow extends JFrame implements ActionListener, TCPConnectio
         connectionData.setPORT(scanner.nextInt());
 
         System.out.println("Name");
-        connectionData.setName(scanner.next());
+        connectionData.setName(scanner.next());*/
 
 
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -70,7 +70,7 @@ public class ClientWindow extends JFrame implements ActionListener, TCPConnectio
 
         setVisible(true);
         try {
-            connection = new TCPConnection(this, connectionData.getIP_ADDR(), connectionData.getPORT());
+            connection = new TCPConnection(this, IP_ADDR, PORT);
         } catch (IOException e) {
             printMsg("Connection exception: " + e);
         }
