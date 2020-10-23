@@ -27,7 +27,6 @@ public class ClientWindow extends JFrame implements ActionListener, TCPConnectio
 
     public static void main(String[] args) {
 
-
         SwingUtilities.invokeLater(() -> new ClientWindow());
 
     }
