@@ -18,7 +18,7 @@ import javax.swing.JTextArea;
 public class ClientWindow extends JFrame implements ActionListener, TCPConnectionListener {
 
 
-    private static final String IP_ADDR = "192.168.0.100";//ip address - 83.99.253.112?
+    private static final String IP_ADDR = "83.99.253.112";//ip address - 83.99.253.112?
     private static final int PORT = 8189;                  // port - ?
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
