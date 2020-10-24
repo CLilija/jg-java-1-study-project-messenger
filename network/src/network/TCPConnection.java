@@ -2,7 +2,10 @@ package network;
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.Charset;
+//import java.nio.charset.Charset;
+//import java.nio.charset.StandardCharsets;
+
+import static java.nio.charset.StandardCharsets.*;
 
 public class TCPConnection {
 
@@ -19,8 +22,8 @@ public class TCPConnection {
     public TCPConnection(TCPConnectionListener evenListener,Socket socket) throws IOException {
        this.evenListener = evenListener;
         this.socket = socket;
-       in = new BufferedReader(new InputStreamReader(socket.getInputStream(), Charset.forName("UTF-8")));
-       out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(),Charset.forName("UTF-8")));
+       in = new BufferedReader(new InputStreamReader(socket.getInputStream(), UTF_8));
+       out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), UTF_8));
         rxThread = new Thread(new Runnable() {
             @Override
             public void run() {

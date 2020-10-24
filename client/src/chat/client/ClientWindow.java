@@ -17,7 +17,7 @@ public class ClientWindow extends JFrame implements ActionListener, TCPConnectio
 
 
     private static String IP_ADDR; //"83.99.253.112"
-    private static int PORT ;                  // port -8189
+    private static int PORT = 8189;                  // port -8189
     private static final int WIDTH = 600;
     private static final int HEIGHT = 400;
     private static String name;
@@ -29,8 +29,8 @@ public class ClientWindow extends JFrame implements ActionListener, TCPConnectio
         Scanner scanner = new Scanner(System.in);
         System.out.println("IP");
         IP_ADDR=scanner.next();
-        System.out.println("PORT");
-        PORT=scanner.nextInt();
+        //System.out.println("PORT");
+        //PORT=scanner.nextInt();
         System.out.println("Name");
         name=scanner.next();
 
